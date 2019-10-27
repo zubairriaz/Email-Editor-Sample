@@ -26,9 +26,10 @@ button{
 
 
  .flex-grid{
-  flex: 0 1 calc(13% - 10px);
+  flex: 0 1 calc(16% - 10px);
   height: 200px;
   border: 1px solid black;
+  box-shadow: 5px 5px #888888;
   margin-right: 20px;
   margin-top: 20px;
  }
@@ -58,4 +59,65 @@ button{
 
 .required{
   color: red;
+}
+
+input[type=text]
+{
+  padding:5px; 
+  border:2px solid #ccc; 
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  width:300px
+ 
+
+}
+
+input[type=text]:focus {
+  border-color:#333;
+}
+
+@media screen and (max-width: 1444px) {
+  button{
+    text-align: center;
+    color: #fefefe;
+    background: #2199e8;
+    border: 2px solid #2199e8;
+    padding: 5px 10px 5px 10px;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .flex-grid{
+    flex: 0 1 calc(20% - 10px);
+    height: 200px;
+    border: 1px solid black;
+    box-shadow: 5px 5px #888888;
+    margin-right: 20px;
+    margin-top: 20px;
+   }
+}
+
+@media screen and (max-width: 970px) {
+  button{
+    text-align: center;
+    color: #fefefe;
+    background: #2199e8;
+    border: 2px solid #2199e8;
+    padding: 5px 10px 5px 10px;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .flex-grid{
+    flex: 0 1 calc(25% - 10px);
+    height: 150px;
+    border: 1px solid black;
+    box-shadow: 5px 5px #888888;
+    margin-right: 20px;
+    margin-top: 20px;
+   }
 }

@@ -66,7 +66,7 @@ const saveDesign = () => {
     }   
     return (
      <div>
-      <input className="input-right" type="text" value={getValue()} onChange={handleChange}  required/>
+     <label>Name: </label> <input className="input-right" type="text" value={getValue()} onChange={handleChange}  required/>
        {error && (<span className = "required">{error}</span>)} 
       <button onClick={saveDesign} className="button-right">Save Design</button>
    
