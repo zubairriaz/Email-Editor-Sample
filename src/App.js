@@ -20,8 +20,8 @@ function reducer(state, action) {
  let payload = action.payload;
   switch (action.type) {
     case "ADD_DESIGN_TO_STATE":
-      return {...state , [payload.index]:payload.design }
-    default:
+      return {...state , [payload.index]:{...payload.design , text:payload.text} }
+  default:
       return state;
   }
 }

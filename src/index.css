@@ -50,3 +50,12 @@ button{
 .button-right{
   float: right;
 }
+
+.input-right{
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.required{
+  color: red;
+}

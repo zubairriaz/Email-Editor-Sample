@@ -7,7 +7,8 @@ import {useHistory } from "react-router-dom";
 
 
 function GridLayout() {
-    const [state, dispatch] = useGlobalState();
+    const [state] = useGlobalState();
+    console.log(state);
     let history = useHistory();
 
     
@@ -24,7 +25,7 @@ function GridLayout() {
           return(
             <div className="flex-grid"> 
                <div className = "inner-content">
-              <p> New Design </p>
+              <p> {designObject.text ? String(designObject.text).toUpperCase() : "Sample Design"} </p>
               <button onClick={()=>onClickEdit(designObject ,key)}>
                   Edit design
               </button>

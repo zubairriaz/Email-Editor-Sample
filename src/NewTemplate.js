@@ -1,8 +1,5 @@
-import React, { useRef , useEffect } from 'react'
-import { render } from 'react-dom'
-
+import React, { useRef , useEffect , useState } from 'react'
 import {useGlobalState} from "./useGlobalState";
-
 import EmailEditor from 'react-email-editor'
 import {useHistory , useParams} from "react-router-dom";
 
@@ -10,27 +7,34 @@ import {useHistory , useParams} from "react-router-dom";
 
 function NewTemplate() {
     let { id } = useParams();
-    console.log(id);
     const [state, dispatch] = useGlobalState();
     let history = useHistory();
     let refEditor = useRef(null);
-    const saveDesign = () => {
+    const [value, setValue ] = useState(undefined);
+    const [error, setError ] = useState("");
+
+    
+
+   
+     
+   
+const saveDesign = () => {
+        if(!value){
+            setError(" *This is required field");
+            return;
+        }
       
         refEditor.saveDesign(design => {
-            let date = new Date();
-            let index = id ? id:date.getTime();
-            let payload = {index:index ,design}
-          console.log('saveDesign', design)
-          dispatch({ type: "ADD_DESIGN_TO_STATE" , payload })
+          let date = new Date();
+          let index = id ? id:date.getTime();
+          let payload = {index:index ,design , text:value}
+          dispatch({ type: "ADD_DESIGN_TO_STATE" , payload})
           history.push("/")
 
         })
       }
   
-      const onLoad = () => {
-        const json = {} /* DESIGN JSON GOES HERE */
-        refEditor.loadDesign(json)
-      }
+
 
 
       useEffect(() => {
@@ -42,22 +46,29 @@ function NewTemplate() {
     }, []);
 
 
-     const exportHtml = () => {
-        refEditor.exportHtml(data => {
-          const { design, html } = data
-          console.log('exportHtml', html, state)
-        })
-      }
-
+    
+    
+    const handleChange = (event)=>{
+        
+        let val = event.target.value;
+       setValue(val);
+       setError("");
+       
+    }
+    const getValue=()=>{
+        let returnValue = ""
+       if(id && value === undefined){
+           returnValue = state[id] ? state[id].text :"";
+           return returnValue;
+       }else{
+           return value; 
+       }
+    }   
     return (
      <div>
-      <h1>
-          {id ? 'Edit Design' : 'New Design'}
-          </h1>
-
-    
-        {/* <button onClick={exportHtml}>Export HTML</button> */}
-        <button onClick={saveDesign} className="button-right">Save Design</button>
+      <input className="input-right" type="text" value={getValue()} onChange={handleChange}  required/>
+       {error && (<span className = "required">{error}</span>)} 
+      <button onClick={saveDesign} className="button-right">Save Design</button>
    
 
       <EmailEditor
